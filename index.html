@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Candida Run</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231b9a77'/%3E%3Ccircle cx='32' cy='22' r='11' fill='%23fff7d1'/%3E%3Cpath d='M20 54c2-16 22-16 24 0' fill='%23f07d6f'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body data-mode="menu">
+    <main class="game-shell" aria-label="Candida Run">
+      <canvas id="gameCanvas" width="1280" height="720" aria-label="Area do jogo"></canvas>
+
+      <section class="hud" aria-live="polite">
+        <div class="hud-item">
+          <span>Score</span>
+          <strong id="scoreValue">0</strong>
+        </div>
+        <div class="hud-item">
+          <span>Vidas</span>
+          <strong id="livesValue">3</strong>
+        </div>
+        <div class="hud-item">
+          <span>Recorde</span>
+          <strong id="highScoreValue">0</strong>
+        </div>
+        <div class="hud-item">
+          <span>Ritmo</span>
+          <strong id="speedValue">1.0x</strong>
+        </div>
+      </section>
+
+      <section id="menuScreen" class="screen screen-menu">
+        <div class="screen-panel menu-panel">
+          <h1>Candida Run</h1>
+          <div class="button-row">
+            <button id="startButton" class="primary-button" type="button">Correr</button>
+            <button id="inventoryButton" class="secondary-button" type="button">Inventário</button>
+          </div>
+          <p class="hint">Desktop: Espaço, ↑ ou W para pular. Esc pausa.</p>
+        </div>
+      </section>
+
+      <section id="inventoryScreen" class="screen screen-inventory" hidden>
+        <div class="inventory-panel">
+          <div class="screen-heading">
+            <div>
+              <p class="eyebrow">Customização</p>
+              <h2>Inventário</h2>
+            </div>
+            <button id="backFromInventoryButton" class="secondary-button" type="button">Voltar</button>
+          </div>
+
+          <div class="inventory-layout">
+            <div class="inventory-controls">
+              <section class="inventory-section">
+                <h3>Cor da pele</h3>
+                <div id="skinColorOptions" class="swatch-list"></div>
+              </section>
+
+              <section class="inventory-section">
+                <h3>Cabelo</h3>
+                <div id="hairStyleOptions" class="option-list"></div>
+              </section>
+
+              <section class="inventory-section">
+                <h3>Cor do cabelo</h3>
+                <div id="hairColorOptions" class="swatch-list"></div>
+              </section>
+
+              <section class="inventory-section">
+                <h3>Tipo de corrida</h3>
+                <div id="runStyleOptions" class="option-list"></div>
+              </section>
+            </div>
+
+            <aside class="preview-panel">
+              <canvas id="previewCanvas" width="360" height="420" aria-label="Preview da personagem"></canvas>
+              <div id="equippedSummary" class="equipped-summary"></div>
+            </aside>
+          </div>
+
+          <section class="inventory-section outfit-section">
+            <div class="section-title-row">
+              <h3>Conjuntos confortáveis</h3>
+              <span id="newOutfitCount" class="new-counter"></span>
+            </div>
+            <div id="outfitOptions" class="outfit-grid"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="gameOverScreen" class="screen screen-game-over" hidden>
+        <div class="screen-panel game-over-panel">
+          <p class="eyebrow">Fim da corrida</p>
+          <h2>Candidíase avançou</h2>
+          <p id="gameOverMessage" class="screen-copy">
+            A infecção ficou mais forte e pode causar coceira, ardor, desconforto ao urinar e corrimento. Procure orientação profissional se os sintomas aparecerem ou persistirem.
+          </p>
+          <p class="score-line">Score: <strong id="finalScoreValue">0</strong></p>
+          <p class="score-line">Recorde: <strong id="finalHighScoreValue">0</strong></p>
+          <div class="button-row">
+            <button id="restartButton" class="primary-button" type="button">Correr de novo</button>
+            <button id="gameOverInventoryButton" class="secondary-button" type="button">Inventário</button>
+            <button id="menuButton" class="secondary-button" type="button">Menu</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="pauseBanner" class="pause-banner" hidden>Pausado</div>
+
+      <div id="pickupToast" class="pickup-toast" hidden></div>
+
+      <div class="orientation-warning">
+        <strong>Gire o aparelho</strong>
+        <span>Candida Run foi pensado para jogar na horizontal.</span>
+      </div>
+
+      <nav id="touchControls" class="touch-controls" aria-label="Controles mobile" hidden>
+        <button id="jumpButton" class="touch-button touch-button-jump" type="button">Pular</button>
+        <button id="pauseButton" class="touch-button" type="button">Pausar</button>
+      </nav>
+    </main>
+
+    <script src="game.js" defer></script>
+  </body>
+</html>
