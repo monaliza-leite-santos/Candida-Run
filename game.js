@@ -303,6 +303,7 @@ function bindUi() {
   refs.restartButton.addEventListener("click", startGame);
   refs.menuButton.addEventListener("click", openMenu);
   refs.gameOverInventoryButton.addEventListener("click", openInventory);
+  canvas.addEventListener("pointerdown", handleCanvasPress);
   refs.jumpButton.addEventListener("pointerdown", handleJumpPress);
   refs.pauseButton.addEventListener("click", togglePause);
 
@@ -321,6 +322,15 @@ function bindUi() {
       togglePause();
     }
   });
+}
+
+function handleCanvasPress(event) {
+  if (app.mode !== "playing" || app.paused) {
+    return;
+  }
+
+  event.preventDefault();
+  jump();
 }
 
 function handleJumpPress(event) {

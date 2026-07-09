@@ -468,13 +468,12 @@ body[data-mode="inventory"] .hud {
 
 .touch-controls {
   position: absolute;
-  left: max(16px, env(safe-area-inset-left));
-  right: max(16px, env(safe-area-inset-right));
-  bottom: max(14px, env(safe-area-inset-bottom));
-  z-index: 8;
+  top: max(12px, env(safe-area-inset-top));
+  left: max(12px, env(safe-area-inset-left));
+  z-index: 9;
   display: none;
-  justify-content: space-between;
-  gap: 14px;
+  justify-content: flex-start;
+  gap: 0;
   pointer-events: none;
 }
 
@@ -482,10 +481,18 @@ body[data-mode="inventory"] .hud {
   display: none;
 }
 
+body[data-mode="playing"] .touch-controls:not([hidden]) {
+  display: flex;
+}
+
+body[data-mode="playing"] .hud {
+  left: calc(max(12px, env(safe-area-inset-left)) + 100px);
+}
+
 .touch-button {
-  min-width: 116px;
-  min-height: 58px;
-  padding: 0 18px;
+  min-width: 86px;
+  min-height: 44px;
+  padding: 0 14px;
   border: 1px solid rgba(255, 255, 255, 0.42);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.86);
@@ -497,9 +504,7 @@ body[data-mode="inventory"] .hud {
 }
 
 .touch-button-jump {
-  min-width: 156px;
-  background: rgba(27, 154, 119, 0.94);
-  color: #fff;
+  display: none;
 }
 
 .orientation-warning {
@@ -531,10 +536,6 @@ body[data-mode="inventory"] .hud {
 }
 
 @media (hover: none), (pointer: coarse) {
-  body[data-mode="playing"] .touch-controls:not([hidden]) {
-    display: flex;
-  }
-
   .hud {
     top: max(8px, env(safe-area-inset-top));
     gap: 6px;
